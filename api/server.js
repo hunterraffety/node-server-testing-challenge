@@ -1,10 +1,10 @@
 const express = require('express')
 
-const carRouter = require('../cars/carsRouter')
+const carsRouter = require('../cars/carsRouter')
 
 const server = express()
 
-server.use('/cars', carRouter)
+server.use('/cars', carsRouter)
 server.use(express.json())
 
 server.get('/', (req, res) => {

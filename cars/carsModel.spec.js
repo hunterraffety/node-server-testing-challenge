@@ -1,5 +1,4 @@
 const db = require('../data/dbConfig')
-const request = require('supertest')
 
 const Cars = require('./carsModel')
 
@@ -8,13 +7,19 @@ describe('cars model', () => {
     await db('cars').truncate()
   })
 
-  describe('get /cars', () => {
-    it('should return 200 OK', () => {
-      return request(server)
-        .get('/cars')
-        .then(res => {
-          expect(res.status).toBe(200)
-        })
+  describe('insert()', () => {
+    it('should insert a car', async () => {
+      await Cars.add({ car_model: 'Test', car_make: 'Test' })
+      const cars = await db('cars')
+      expect(cars).toHaveLength(1)
+    })
+  })
+
+  describe('find()', () => {
+    it('should retrieve all cars', async () => {
+      await Cars.find()
+      const cars = await db('cars')
+      expect.arrayContaining(cars)
     })
   })
 })
