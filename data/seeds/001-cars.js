@@ -1,13 +1,13 @@
-
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
+  return knex('cars')
+    .del()
+    .then(function() {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+      return knex('cars').insert([
+        { car_make: 'test car', car_model: 'test', car_mileage: 10000 },
+        { car_make: 'test car', car_model: 'test', car_mileage: 10000 },
+        { car_make: 'test car', car_model: 'test', car_mileage: 10000 }
+      ])
+    })
+}
